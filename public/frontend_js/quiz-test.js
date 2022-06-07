@@ -1400,7 +1400,7 @@ async function askQuestion(totalQuizQuestions, counter, fromBack) {
 			if (val.answer) {
 				$("#typeSelection .answerInner").append(`
           <div class="selectionOptions">
-            <button data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" onClick="checkAllergie()" >${val.answer}</button>
+            <button data-val="${val.answer}" data-id="${val.id}" class="selectionBtns selectionBtn" onClick="checkAllergie('${val.answer}')" >${val.answer}</button>
           </div>
         `);
 			}
@@ -2083,6 +2083,13 @@ function handleImageMissing(self) {
 	$(self).addClass("image-missing");
 }
 
-function checkAllergie() {
-	console.log("i am here");
+function checkAllergie(allergyValue) {
+	var givenAllergies = ["Banana", "Olive", "Sunflowers"];
+	if (givenAllergies.includes(allergyValue)) {
+		terminateQuiz();
+	} else console.log("Something went wrong");
+}
+
+function terminateQuiz() {
+	document.getElementById("customOverlay").style.display = "block";
 }
