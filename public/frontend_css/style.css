@@ -847,6 +847,10 @@ input::-ms-input-placeholder {
 	width: -moz-max-content;
 	padding-bottom: 4px;
 	border-bottom: 1px solid black;
+	position: absolute;
+	top: 65%;
+	left: 60%;
+	transform: translate(-50%, -50%);
 }
 #page4 .customImgRow img {
 	width: 335px;
