@@ -727,10 +727,9 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
 	clearTimeout(timeout);
 	clearTimeout(closeResponseTimeout);
 
-	terminateQuiz();
-	// setTimeout(async () => {
-	// 	nextQuestion();
-	// }, closeResponseTimeoutCounter);
+	setTimeout(async () => {
+		nextQuestion();
+	}, closeResponseTimeoutCounter);
 
 	if (goBack) {
 		let stepBack =
@@ -2092,8 +2091,33 @@ function checkAllergie(allergyValue) {
 }
 
 async function terminateQuiz() {
-	const response = await fetch(url_preset + "/v1/api/actives");
-	const data = await response.json();
-	console.log(data);
+	// const response = await fetch(url_preset + "/v1/api/actives");
+	// const data = await response.json();
+	// console.log(data);
+	var message =
+		"You have an allergy to main ingredients in our system. Our current system will not suit you";
+
+	let counts = setInterval(updated, 1000);
+	let upto = 10;
+
 	document.getElementById("customOverlay").style.display = "block";
+	document.getElementById("customOverlay").innerHTML = `
+			<div class="container">
+				<p>
+					${message}
+				</p>
+				<h1>
+					Quiz will now be terminated
+				</h1>
+				<h1 id="counter">
+				</h1>
+			</div>`;
+
+	function updated() {
+		var count = document.getElementById("counter");
+		count.innerHTML = --upto;
+		if (upto === 0) {
+			clearInterval(counts);
+		}
+	}
 }
