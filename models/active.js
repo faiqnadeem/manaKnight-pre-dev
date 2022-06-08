@@ -1,6 +1,6 @@
 /*Powered By: Manaknightdigital Inc. https://manaknightdigital.com/ Year: 2021*/
 /**
- * active Model
+ * timeout Model
  * @copyright 2021 Manaknightdigital Inc.
  * @link https://manaknightdigital.com
  * @license Proprietary Software licensing
@@ -8,110 +8,107 @@
  *
  */
 
-const moment = require("moment");
-const bcrypt = require("bcryptjs");
-const { Op } = require("sequelize");
+// const moment = require("moment");
+// const bcrypt = require("bcryptjs");
+// const { Op } = require("sequelize");
 const { intersection } = require("lodash");
 const coreModel = require("./../core/models");
 
 module.exports = (sequelize, DataTypes) => {
-  const Active = sequelize.define(
-    "active",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      name: DataTypes.STRING,
-      handle: DataTypes.TEXT,
-      description: DataTypes.TEXT,
-      variables_scores: DataTypes.TEXT,
-      created_at: DataTypes.DATEONLY,
-      updated_at: DataTypes.DATE,
-    },
-    {
-      timestamps: true,
-      freezeTableName: true,
-      tableName: "active",
-    },
-    {
-      underscoredAll: false,
-      underscored: false,
-    }
-  );
+	const Timeout = sequelize.define(
+		"timeout",
+		{
+			id: {
+				type: DataTypes.INTEGER,
+				primaryKey: true,
+				autoIncrement: true,
+			},
+			message: DataTypes.STRING,
+			counter: DataTypes.INTEGER,
+		},
+		{
+			timestamps: true,
+			freezeTableName: true,
+			tableName: "timeout",
+		},
+		{
+			underscoredAll: false,
+			underscored: false,
+		}
+	);
 
-  coreModel.call(this, Active);
+	coreModel.call(this, Timeout);
 
-  Active._preCreateProcessing = function (data) {
-    return data;
-  };
-  Active._postCreateProcessing = function (data) {
-    return data;
-  };
-  Active._customCountingConditions = function (data) {
-    return data;
-  };
+	Timeout._preCreateProcessing = function (data) {
+		return data;
+	};
+	Timeout._postCreateProcessing = function (data) {
+		return data;
+	};
+	Timeout._customCountingConditions = function (data) {
+		return data;
+	};
 
-  Active._filterAllowKeys = function (data) {
-    let cleanData = {};
-    let allowedFields = Active.allowFields();
-    allowedFields.push(Active._primaryKey());
+	Timeout._filterAllowKeys = function (data) {
+		let cleanData = {};
+		let allowedFields = Timeout.allowFields();
+		allowedFields.push(Timeout._primaryKey());
 
-    for (const key in data) {
-      if (allowedFields.includes(key)) {
-        cleanData[key] = data[key];
-      }
-    }
-    return cleanData;
-  };
+		for (const key in data) {
+			if (allowedFields.includes(key)) {
+				cleanData[key] = data[key];
+			}
+		}
+		return cleanData;
+	};
 
-  Active.timeDefaultMapping = function () {
-    let results = [];
-    for (let i = 0; i < 24; i++) {
-      for (let j = 0; j < 60; j++) {
-        let hour = i < 10 ? "0".i : i;
-        let min = j < 10 ? "0".j : j;
-        results[i * 60 + j] = `${hour}:${min}`;
-      }
-    }
-    return results;
-  };
+	Timeout.timeDefaultMapping = function () {
+		let results = [];
+		for (let i = 0; i < 24; i++) {
+			for (let j = 0; j < 60; j++) {
+				let hour = i < 10 ? "0".i : i;
+				let min = j < 10 ? "0".j : j;
+				results[i * 60 + j] = `${hour}:${min}`;
+			}
+		}
+		return results;
+	};
 
-  Active.associate = function (models) {};
+	Timeout.associate = function (models) {};
 
-  Active.allowFields = function () {
-    return ["id", "name", "handle", "variables_scores", "description"];
-  };
+	Timeout.allowFields = function () {
+		return ["id", "message", "counter"];
+	};
 
-  Active.labels = function () {
-    return ["ID", "Name", "Handle", "Variables scores", "Description"];
-  };
+	Timeout.labels = function () {
+		return ["id", "message", "counter"];
+	};
 
-  Active.validationRules = function () {
-    return [
-      ["id", "ID", ""],
-      ["name", "Name", "required"],
-      ["variables_scores", "Variables scores", ""],
-      ["description", "Description", ""],
-    ];
-  };
+	Timeout.validationRules = function () {
+		return [
+			["id", "ID", ""],
+			["message", "Message"],
+			["counter", "Counter"],
+		];
+	};
 
-  Active.validationEditRules = function () {
-    return [
-      ["id", "ID", ""],
-      ["name", "Name", "required"],
-      ["variables_scores", "Variables scores", ""],
-      ["description", "Description", ""],
-    ];
-  };
+	Timeout.validationEditRules = function () {
+		return [
+			["id", "ID", ""],
+			["message", "Message"],
+			["counter", "Counter", ""],
+		];
+	};
 
-  // ex
-  Active.intersection = function (fields) {
-    if (fields) {
-      return intersection(["id", "name", "handle", "variables_scores", "description", "created_at", "updated_at"], Object.keys(fields));
-    } else return [];
-  };
+	// ex
+	Timeout.intersection = function (fields) {
+		if (fields) {
+			return intersection(
+				["id", "message", "counter", "created_at", "updated_at"],
+				Object.keys(fields)
+			);
+		} else return [];
+	};
 
-  return Active;
+	return Timeout;
 };

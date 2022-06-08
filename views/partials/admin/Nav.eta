@@ -13,7 +13,7 @@
     <li><a href="/admin/answers/0" class="menu-item <%= it._base_url === '/admin/answers' ? 'menu-active':''%>">Answers</a></li>
     <li><a href="/admin/rules/0" class="menu-item <%= it._base_url === '/admin/rules' ? 'menu-active':''%>">Rules</a></li>
     <li><a href="/admin/actives/0" class="menu-item <%= it._base_url === '/admin/actives' ? 'menu-active':''%>">Actives</a></li>
-    <li><a href="/admin/quizSettings/0" class="menu-item <%= it._base_url === '/admin/quizSettings' ? 'menu-active':''%>">Quiz Settings</a></li>
+    <li><a href="/admin/actives/0" class="menu-item <%= it._base_url === '/admin/actives' ? 'menu-active':''%>">Quiz Timeout</a></li>
     <li><a href="/admin/output-variables/0" class="menu-item <%= it._base_url === '/admin/output-variables' ? 'menu-active':''%>">Output variables</a></li>
     <li><a href="/admin/profile-sections/0" class="menu-item <%= it._base_url === '/admin/profile-sections' ? 'menu-active':''%>">Profile sections</a></li>
     <li><a href="/admin/profile" class="menu-item <%= it._base_url === '/admin/profile' ? 'menu-active':''%>">Profile</a></li>

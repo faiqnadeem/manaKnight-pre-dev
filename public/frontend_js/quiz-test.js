@@ -727,9 +727,10 @@ async function nextQuestion(goBack, goBackFromResponse, fromDependedOn) {
 	clearTimeout(timeout);
 	clearTimeout(closeResponseTimeout);
 
-	setTimeout(async () => {
-		nextQuestion();
-	}, closeResponseTimeoutCounter);
+	terminateQuiz();
+	// setTimeout(async () => {
+	// 	nextQuestion();
+	// }, closeResponseTimeoutCounter);
 
 	if (goBack) {
 		let stepBack =
@@ -2090,6 +2091,9 @@ function checkAllergie(allergyValue) {
 	} else console.log("Something went wrong");
 }
 
-function terminateQuiz() {
+async function terminateQuiz() {
+	const response = await fetch(url_preset + "/v1/api/actives");
+	const data = await response.json();
+	console.log(data);
 	document.getElementById("customOverlay").style.display = "block";
 }

@@ -4,6 +4,7 @@ const AdminQuizController = require("./admin/Admin_quiz_controller");
 const AdminQuestionController = require("./admin/Admin_question_controller");
 const AdminRulesController = require("./admin/Admin_rules_controller");
 const AdminActivesController = require("./admin/Admin_actives_controller");
+const AdminTimeoutController = require("./admin/Admin_timeout_controller");
 const AdminOutputVariablesController = require("./admin/Admin_output_variables_controller");
 const AdminResultProfileController = require("./admin/Admin_result_profile_controller");
 const AdminGetProfileSystem = require("./admin/getProfileSystem");
@@ -15,20 +16,21 @@ const getProducts = require("./shopify/getProducts");
 const ShopifyWebhook = require("./shopify/webhook");
 const KlaviyoController = require("./klaviyo/index");
 module.exports = [
-  KlaviyoController,
-  Admin_order_controller,
-  ShopifyWebhook,
-  AdminResultProfileController,
-  AdminGetProfileSystem,
-  AdminUserController,
-  AdminQuizController,
-  AdminQuestionController,
-  AdminRulesController,
-  AdminActivesController,
-  AdminOutputVariablesController,
-  AdminAnswerController,
-  AdminDashboard,
-  MemberDashboard,
-  PublicIndex,
-  getProducts,
+	KlaviyoController,
+	Admin_order_controller,
+	ShopifyWebhook,
+	AdminResultProfileController,
+	AdminGetProfileSystem,
+	AdminUserController,
+	AdminQuizController,
+	AdminQuestionController,
+	AdminRulesController,
+	AdminActivesController,
+	AdminTimeoutController,
+	AdminOutputVariablesController,
+	AdminAnswerController,
+	AdminDashboard,
+	MemberDashboard,
+	PublicIndex,
+	getProducts,
 ];
